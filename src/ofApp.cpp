@@ -16,7 +16,7 @@ void ofApp::setup() {
 	model.setRotation(0, 180, 1, 0, 3);
 	model.setScale(modelScaled, modelScaled, modelScaled);
 
-	//adding mesh to count the number of vertices
+	//adding mesh to count the number of vertices.
 	//tex.load("cat.jpg");
 	mesh = model.getMesh(i);
 	catVertexNum = mesh.getNumVertices();
