@@ -36,6 +36,10 @@ public:
 	ofxAssimpModelLoader model;
 	int catVertexNum;
 
+	// size of Object
+	int objSize;
+	int catSize = 400;
+
 	// light
 	ofLight light;
 

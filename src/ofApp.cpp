@@ -15,6 +15,7 @@ void ofApp::setup() {
 	model.setPosition(0, -200, 0);
 	model.setRotation(0, 180, 1, 0, 3);
 	model.setScale(modelScaled, modelScaled, modelScaled);
+	objSize = catSize;
 
 	//adding mesh to count the number of vertices.
 	//tex.load("cat.jpg");
@@ -503,7 +504,7 @@ void ofApp::drawObject() {
 		meshNode.restoreTransformGL();
 		ofDisableDepthTest();
 	}
-	meshNode.setScale(modelScaled * 400);
+	meshNode.setScale(modelScaled * objSize);
 }
 
 void ofApp::drawPrimitive() {
