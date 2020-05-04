@@ -37,8 +37,11 @@ public:
 	int catVertexNum;
 
 	// size of Object
+	string objName = "CAT";
 	int objSize;
 	int catSize = 400;
+	int penguinSize = 20;
+	int rockSize = 100;
 
 	// light
 	ofLight light;

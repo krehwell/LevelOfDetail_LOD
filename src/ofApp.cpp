@@ -577,6 +577,7 @@ void ofApp::draw() {
 		drawPrimitive();
 	}
 	else if (previewAllPrimitive) {
+		vertexMode.set("VERTEX MODE", false);
 		numMesh << "PLANE VERTICES: " << planeMesh.getNumVertices() << endl
 			<< "BOX VERTICES: " << boxMesh.getNumVertices() << endl
 			<< "SPHERE VERTICES: " << sphereMesh.getNumVertices() << endl
@@ -586,7 +587,8 @@ void ofApp::draw() {
 		initDraw();
 	}
 	else {
-		numMesh << "CAT VERTICES: " << mesh.getNumVertices();
+		// printing number of meshVertices
+		numMesh << objName << " VERTICES: "<< mesh.getNumVertices();
 		drawObject();
 	}
 	cam.end();
@@ -609,82 +611,119 @@ void ofApp::draw() {
 		toggleInfo << "(1/2/3/4): SET RESOLUTION";
 		ofDrawBitmapStringHighlight(toggleInfo.str().c_str(), ofGetWidth()/2-80, 50);
 	}
+	else if (!previewAllPrimitive && !priVisual) {
+		stringstream toggleInfo;
+		toggleInfo << "(1/2/3): CHANGE OBJECT";
+		ofDrawBitmapStringHighlight(toggleInfo.str().c_str(), ofGetWidth() / 2 - 80, 50);
+	}
 }
 
 //--------------------------------------------------------------
 void ofApp::keyPressed(int key) {
-	switch (key) {
-	case 'f':
-		ofToggleFullscreen();
-		break;
-	case 's':
-		faceHold = !faceHold;
-		break;
-	case '1':
-		bSplitFaces = false;
-		sphere.setResolution(4);
-		// icosahedron //
-		icoSphere.setResolution(0); // number of subdivides //
-		plane.setResolution(3, 2);
-		cylinder.setResolution(4, 2, 0);
-		cone.setResolution(4, 1, 0);
-		box.setResolution(1);
+	if (previewAllPrimitive) {
+		switch (key) {
+		case 'f':
+			ofToggleFullscreen();
+			break;
+		case 's':
+			faceHold = !faceHold;
+			break;
+		case '1':
+			bSplitFaces = false;
+			sphere.setResolution(4);
+			// icosahedron //
+			icoSphere.setResolution(0); // number of subdivides //
+			plane.setResolution(3, 2);
+			cylinder.setResolution(4, 2, 0);
+			cone.setResolution(4, 1, 0);
+			box.setResolution(1);
 
-		icosphereMesh =  icoSphere.getMesh();
-		sphereMesh = sphere.getMesh();
-		planeMesh = plane.getMesh();
-		coneMesh = cone.getMesh();
-		cylinderMesh = cylinder.getMesh();
-		boxMesh = box.getMesh();
-		break;
-	case '2':
-		bSplitFaces = false;
-		sphere.setResolution(8);
-		icoSphere.setResolution(1);
-		plane.setResolution(6, 4);
-		cylinder.setResolution(8, 4, 1);
-		cone.setResolution(7, 2, 1);
-		box.setResolution(2);
+			icosphereMesh = icoSphere.getMesh();
+			sphereMesh = sphere.getMesh();
+			planeMesh = plane.getMesh();
+			coneMesh = cone.getMesh();
+			cylinderMesh = cylinder.getMesh();
+			boxMesh = box.getMesh();
+			break;
+		case '2':
+			bSplitFaces = false;
+			sphere.setResolution(8);
+			icoSphere.setResolution(1);
+			plane.setResolution(6, 4);
+			cylinder.setResolution(8, 4, 1);
+			cone.setResolution(7, 2, 1);
+			box.setResolution(2);
 
-		icosphereMesh = icoSphere.getMesh();
-		sphereMesh = sphere.getMesh();
-		planeMesh = plane.getMesh();
-		coneMesh = cone.getMesh();
-		cylinderMesh = cylinder.getMesh();
-		boxMesh = box.getMesh();
-		break;
-	case '3':
-		bSplitFaces = false;
-		sphere.setResolution(16);
-		icoSphere.setResolution(2);
-		plane.setResolution(8, 5);
-		cylinder.setResolution(12, 9, 2);
-		cone.setResolution(10, 5, 2);
-		box.setResolution(6);
+			icosphereMesh = icoSphere.getMesh();
+			sphereMesh = sphere.getMesh();
+			planeMesh = plane.getMesh();
+			coneMesh = cone.getMesh();
+			cylinderMesh = cylinder.getMesh();
+			boxMesh = box.getMesh();
+			break;
+		case '3':
+			bSplitFaces = false;
+			sphere.setResolution(16);
+			icoSphere.setResolution(2);
+			plane.setResolution(8, 5);
+			cylinder.setResolution(12, 9, 2);
+			cone.setResolution(10, 5, 2);
+			box.setResolution(6);
 
-		icosphereMesh = icoSphere.getMesh();
-		sphereMesh = sphere.getMesh();
-		planeMesh = plane.getMesh();
-		coneMesh = cone.getMesh();
-		cylinderMesh = cylinder.getMesh();
-		boxMesh = box.getMesh();
-		break;
-	case '4':
-		bSplitFaces = false;
-		sphere.setResolution(48);
-		icoSphere.setResolution(4);
-		plane.setResolution(12, 9);
-		cylinder.setResolution(20, 13, 4);
-		cone.setResolution(20, 9, 3);
-		box.setResolution(10);
+			icosphereMesh = icoSphere.getMesh();
+			sphereMesh = sphere.getMesh();
+			planeMesh = plane.getMesh();
+			coneMesh = cone.getMesh();
+			cylinderMesh = cylinder.getMesh();
+			boxMesh = box.getMesh();
+			break;
+		case '4':
+			bSplitFaces = false;
+			sphere.setResolution(48);
+			icoSphere.setResolution(4);
+			plane.setResolution(12, 9);
+			cylinder.setResolution(20, 13, 4);
+			cone.setResolution(20, 9, 3);
+			box.setResolution(10);
 
-		icosphereMesh = icoSphere.getMesh();
-		sphereMesh = sphere.getMesh();
-		planeMesh = plane.getMesh();
-		coneMesh = cone.getMesh();
-		cylinderMesh = cylinder.getMesh();
-		boxMesh = box.getMesh();
-		break;
+			icosphereMesh = icoSphere.getMesh();
+			sphereMesh = sphere.getMesh();
+			planeMesh = plane.getMesh();
+			coneMesh = cone.getMesh();
+			cylinderMesh = cylinder.getMesh();
+			boxMesh = box.getMesh();
+			break;
+		}
+	}
+	else if(!previewAllPrimitive && !priVisual){
+		switch (key) {
+		case '1':
+			model.loadModel("catOLOD.obj");
+			mesh = model.getMesh(0);
+			ofDisableArbTex();
+			ofLoadImage(texture, "cat.jpg");
+			objSize = catSize;
+			objName = "CAT";
+			break;
+
+		case '2':
+			model.loadModel("penguinOLOD.obj");
+			mesh = model.getMesh(0);
+			ofDisableArbTex();
+			ofLoadImage(texture, "penguin.jpg");
+			objSize = penguinSize;
+			objName = "PENGUIN";
+			break;
+
+		case '3':
+			model.loadModel("rockOLOD.obj");
+			mesh = model.getMesh(0);
+			ofDisableArbTex();
+			ofLoadImage(texture, "rock.jpg");
+			objSize = rockSize;
+			objName = "ROCK";
+			break;
+		}
 	}
 }
 
