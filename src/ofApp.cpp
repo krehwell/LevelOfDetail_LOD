@@ -571,6 +571,13 @@ void ofApp::draw() {
 
 	cam.begin();
 
+	meshNode.transformGL();
+	ofEnableDepthTest();
+	ofColor(0.2,0.1,0.5);
+	ofDrawGrid(40, 10, true, false, true, false);
+	ofDisableDepthTest();
+	meshNode.restoreTransformGL();
+
 	if (priVisual) {
 		ofMesh sphereMesh = sphereSingle.getMesh();
 		numMesh << "SPHERE VERTICES: " << mesh.getNumVertices() << endl << "SPHERE RESOLUTION: " << sphereSingle.getResolution();
