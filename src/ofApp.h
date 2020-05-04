@@ -38,10 +38,10 @@ public:
 
 	// size of Object
 	string objName = "CAT";
-	int objSize;
-	int catSize = 400;
+	int objSize = 20;
+	int catSize = 20;
 	int penguinSize = 20;
-	int rockSize = 100;
+	int rockSize = 20;
 
 	// light
 	ofLight light;
@@ -84,7 +84,12 @@ public:
 	ofxPanel gui2;
 	ofParameter<bool> camHold;
 	ofParameter<bool> faceHold;
-
+	// gui 3 - adding optional addition for grid
+	ofxPanel gui3;
+	// grid will flip due to the meshNode.trasnform
+	ofParameter<bool> gX; // this is z
+	ofParameter<bool> gY; // this is x
+	ofParameter<bool> gZ; // this is y
 	// --
 	ofSpherePrimitive sphereSingle;
 

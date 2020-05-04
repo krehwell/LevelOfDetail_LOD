@@ -13,7 +13,7 @@ void ofApp::setup() {
 	// model setup
 	model.loadModel("catOLOD.obj");
 	model.setPosition(0, -200, 0);
-	model.setRotation(0, 180, 1, 0, 3);
+	//model.setRotation(0, 180, 1, 0, 3);
 	model.setScale(modelScaled, modelScaled, modelScaled);
 	objSize = catSize;
 
@@ -37,7 +37,7 @@ void ofApp::setup() {
 
 	//gui setup
 	gui.setup("PANEL");
-	gui.setPosition(10, 60);
+	gui.setPosition(10, 50);
 	gui.add(vertexMode.set("VERTEX MODE", false));
 	gui.add(wireframeMode.set("WIREFRAME MODE", false));
 	gui.add(modelScaled.set("OBJECT SCALING", 0.9f, 0.1f, 10.0f));
@@ -56,6 +56,13 @@ void ofApp::setup() {
 	gui2.setPosition(ofGetWidth()-210, 60);
 	gui2.add(camHold.set("HOLD CAMERA", false));
 	gui2.add(faceHold.set("RENDER FACE", true));
+
+	// gui-3 setup
+	gui3.setup("GRID");
+	gui3.setPosition(ofGetWidth() - 210, 60);
+	gui3.add(gY.set("X", true));
+	gui3.add(gZ.set("Y", false));
+	gui3.add(gX.set("Z", false));
 
 	initSetup();
 }
@@ -571,19 +578,22 @@ void ofApp::draw() {
 
 	cam.begin();
 
-	meshNode.transformGL();
-	ofEnableDepthTest();
-	ofColor(0.2,0.1,0.5);
-	ofDrawGrid(40, 10, true, false, true, false);
-	ofDisableDepthTest();
-	meshNode.restoreTransformGL();
+	// drawing grid
+	if (!previewAllPrimitive) {
+		meshNode.transformGL();
+		ofDrawGrid(40, 10, true, gX, gY, gZ);
+		meshNode.restoreTransformGL();
+	}
 
+	// calling drawing function for each mode
 	if (priVisual) {
+		previewAllPrimitive = false;
 		ofMesh sphereMesh = sphereSingle.getMesh();
 		numMesh << "SPHERE VERTICES: " << mesh.getNumVertices() << endl << "SPHERE RESOLUTION: " << sphereSingle.getResolution();
 		drawPrimitive();
 	}
 	else if (previewAllPrimitive) {
+		priVisual = false;
 		vertexMode.set("VERTEX MODE", false);
 		numMesh << "PLANE VERTICES: " << planeMesh.getNumVertices() << endl
 			<< "BOX VERTICES: " << boxMesh.getNumVertices() << endl
@@ -598,31 +608,44 @@ void ofApp::draw() {
 		numMesh << objName << " VERTICES: "<< mesh.getNumVertices();
 		drawObject();
 	}
+
 	cam.end();
 
 	camPosition.set("CAMERA POSITION", glm::vec3(cam.getX(), cam.getY(), cam.getZ()), glm::vec3(0,0,0), glm::vec3(360.0f, 360.0f, 360.0f));
+
+	// calling gui draw
 	gui.draw();
 	gui1.draw();
 
 	// fps info
 	stringstream ss;
 	ss << "FPS: " << ofToString(ofGetFrameRate(), 0) << endl << "(double click to reset camera)";
-	ofDrawBitmapStringHighlight(ss.str().c_str(), 20, 20);
+	ofDrawBitmapStringHighlight(ss.str().c_str(), 10, 20);
 
 	// printing info cat
-	ofDrawBitmapStringHighlight(numMesh.str().c_str(), 20, 700);
+	ofDrawBitmapStringHighlight(numMesh.str().c_str(), 10, 700);
 
 	if (previewAllPrimitive) {
 		gui2.draw();
 		stringstream toggleInfo;
 		toggleInfo << "(1/2/3/4): SET RESOLUTION";
-		ofDrawBitmapStringHighlight(toggleInfo.str().c_str(), ofGetWidth()/2-80, 50);
+		ofDrawBitmapStringHighlight(toggleInfo.str().c_str(), ofGetWidth()/2-80, 20);
 	}
 	else if (!previewAllPrimitive && !priVisual) {
 		stringstream toggleInfo;
 		toggleInfo << "(1/2/3): CHANGE OBJECT";
-		ofDrawBitmapStringHighlight(toggleInfo.str().c_str(), ofGetWidth() / 2 - 80, 50);
+		ofDrawBitmapStringHighlight(toggleInfo.str().c_str(), ofGetWidth() / 2 - 80, 20);
 	}
+
+	// showing grid options
+	if (!previewAllPrimitive) {
+		gui3.draw();
+	}
+
+	// gui fluid
+	gui1.setPosition(ofGetWidth() - 210, 0);
+	gui2.setPosition(ofGetWidth() - 210, 60);
+	gui3.setPosition(ofGetWidth() - 210, 60);
 }
 
 //--------------------------------------------------------------
