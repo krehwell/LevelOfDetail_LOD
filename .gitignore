@@ -7,6 +7,13 @@
 *.userosscache
 *.sln.docstates
 
+*.sln
+*.make
+*.vcxproj
+*.filters
+*.vcxproj.user
+*.rc
+
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
 
@@ -259,11 +266,3 @@ paket-files/
 # Python Tools for Visual Studio (PTVS)
 __pycache__/
 *.pyc
-
-addons.make
-FinishingLOD.sln
-FinishingLOD.vcxproj
-FinishingLOD.vcxproj.filters
-FinishingLOD.vcxproj.user
-icon.rc
-obj
