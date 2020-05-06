@@ -18,7 +18,8 @@ OS: Windows 10
 IDE: visual studio 2017
 
 ## Output
-here is a sample output of a program, the program does having another different output, but here is a couple of it
+here is a sample output of a program, the program does having another different output, but here is a couple of it.
+
 <b>1 - Example of LOD affecting the model (cat).</b>
 ![image](image(output)/catLOD.PNG)
 
