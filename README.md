@@ -18,9 +18,9 @@ OS: Windows 10<br />
 IDE: visual studio 2017<br />
 
 ## Program features
-GUI 
-3 different mode of visualization 
-fps, on showing the performance of each LOD 
+GUI<br/>
+3 different mode of visualization<br/>
+fps, on showing the performance of each LOD<br/>
 etc.
 
 ## Output
