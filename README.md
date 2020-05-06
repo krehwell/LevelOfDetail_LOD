@@ -15,6 +15,7 @@ the program visualize the level of detail on 3 different 3d model objects, the p
 
 ## Project tools
 OS: Windows 10
+
 IDE: visual studio 2017
 
 ## Output
