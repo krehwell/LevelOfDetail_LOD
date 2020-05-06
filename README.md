@@ -17,6 +17,12 @@ the program visualize the level of detail on 3 different 3d model objects, the p
 OS: Windows 10<br />
 IDE: visual studio 2017<br />
 
+## Program features
+GUI 
+3 different mode of visualization 
+fps, on showing the performance of each LOD 
+etc.
+
 ## Output
 here is a sample output of a program, the program does having another different output, but here is a couple of it.
 
