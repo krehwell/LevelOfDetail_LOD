@@ -20,7 +20,7 @@ IDE: visual studio 2017
 ## Output
 here is a sample output of a program, the program does having another different output, but here is a couple of it
 <b>1 - Example of LOD affecting the model (cat).</b>
-![image](img/catLOD.PNG)
+![image](image(output)/catLOD.PNG)
 
 <b>2 - Example of LOD affecting the light on a 3d object.</b>
-![image](img/sphereLOD.PNG)
+![image](image(output)/sphereLOD.PNG)
