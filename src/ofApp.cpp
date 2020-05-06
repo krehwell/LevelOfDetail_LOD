@@ -141,6 +141,8 @@ void ofApp::initDraw() {
 
 	ofEnableDepthTest();
 
+	
+
 	ofEnableLighting();
 	pointLight.enable();
 	pointLight2.enable();
@@ -578,6 +580,35 @@ void ofApp::draw() {
 
 	cam.begin();
 
+	// culling start	 ----- here
+	/*if (cullz) {
+		ofEnableDepthTest();
+		glEnable(GL_CULL_FACE);/*
+		if (ofGetMousePressed()) {*/
+		ofEnableDepthTest();
+		glEnable(GL_CULL_FACE);
+		glDepthMask(GL_TRUE);
+		glPolygonOffset(1, 1);
+		//glCullFace(GL_FRONT);
+
+		/*}
+		else {
+			glCullFace(GL_FRONT);
+		}*/
+
+
+		/*ofEnableNormalizedTexCoords();
+		texture.bind();
+		sphere.draw();
+		texture.unbind();
+		ofDisableNormalizedTexCoords();*/
+
+		
+	//}
+
+	// end of try culling ----- here
+
+	if (noDraw) {
 	// drawing grid
 	if (!previewAllPrimitive) {
 		meshNode.transformGL();
@@ -607,6 +638,9 @@ void ofApp::draw() {
 		// printing number of meshVertices
 		numMesh << objName << " VERTICES: "<< mesh.getNumVertices();
 		drawObject();
+	}
+	glDisable(GL_CULL_FACE);
+	ofDisableDepthTest();
 	}
 
 	cam.end();
@@ -754,6 +788,13 @@ void ofApp::keyPressed(int key) {
 			objName = "ROCK";
 			break;
 		}
+	}
+
+	switch (key) {
+	case 'p':
+		cullz = !cullz;
+		ofLoadImage(texture, "earth.jpg");
+		break;
 	}
 }
 

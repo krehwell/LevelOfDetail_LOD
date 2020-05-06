@@ -126,4 +126,6 @@ public:
 	bool bMousePressed = false;
 	bool bSplitFaces = false;
 
+	bool cullz = true;
+	bool noDraw = true;
 };
