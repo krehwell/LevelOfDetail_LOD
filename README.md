@@ -18,10 +18,10 @@ OS: Windows 10<br />
 IDE: visual studio 2017<br />
 
 ## Program features
--GUI<br/>
--3 different mode of visualization<br/>
--fps, on showing the performance of each LOD<br/>
--etc.
+- GUI<br/>
+- 3 different mode of visualization<br/>
+- fps, on showing the performance of each LOD<br/>
+- etc.
 
 ## Output
 here is a sample output of a program, the program does having another different output, but here is a couple of it.
