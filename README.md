@@ -1,11 +1,11 @@
 # Level of Detail
 the program visualize the level of detail on 3 different 3d model objects, the program made using openframeworks
 
-# Add-on
+## Add-on
 -ofxGui
 -ofxAssimp
 
-# Set-up
+## Set-up
 1. make a project
 
 ## yo
