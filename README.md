@@ -30,4 +30,4 @@ here is a sample output of a program, the program does having another different 
 ![image](image(output)/catLOD.PNG)
 
 <b>2 - Example of LOD affecting the light on a 3d object.</b>
-![image](image(output)/sphereLOD.PNG)
+![image](image(output)/Capture.PNG)
