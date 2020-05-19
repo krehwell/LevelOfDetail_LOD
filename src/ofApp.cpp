@@ -590,7 +590,7 @@ void ofApp::draw() {
 	if (priVisual) {
 		previewAllPrimitive = false;
 		ofMesh sphereMesh = sphereSingle.getMesh();
-		numMesh << "SPHERE VERTICES: " << mesh.getNumVertices() << endl << "SPHERE RESOLUTION: " << sphereSingle.getResolution();
+		numMesh << "SPHERE VERTICES: " << sphereMesh.getNumVertices() << endl << "SPHERE RESOLUTION: " << sphereSingle.getResolution();
 		drawPrimitive();
 	}
 	else if (previewAllPrimitive) {
