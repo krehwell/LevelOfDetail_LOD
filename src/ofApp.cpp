@@ -22,7 +22,7 @@ void ofApp::setup() {
 	mesh = model.getMesh(i);
 	catVertexNum = mesh.getNumVertices();
 
-	// resize the mash if uses - call meshNode.transformGL(); to use
+	// resize the mesh if uses - call meshNode.transformGL(); to use
 	meshNode.setGlobalOrientation(glm::angleAxis(ofDegToRad(180.f), glm::vec3{ 0.f, 1.f, 0.f }));
 	meshNode.setGlobalPosition(0, -120, 0);
 	meshNode.rotate(200, 0, 1,0);
